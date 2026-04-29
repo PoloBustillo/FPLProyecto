@@ -2,7 +2,9 @@
     acceso_permitido/3,
     diagnostico_fallo/4,
     diagnostico_rapido/4,
-    evaluar_acceso/4
+    evaluar_acceso/4,
+    trace_evaluar/4,
+    trace_evaluar_sin_pausa/4
 ]).
 
 % -------------------------------
@@ -138,3 +140,21 @@ evaluar_acceso(U, S, P, resultado(cumple_politicas, acceso_autorizado)) :-
 evaluar_acceso(U, S, P, resultado(no_cumple_politicas, Causas)) :-
     diagnostico_fallo(U, S, P, Causas), !.
 evaluar_acceso(_U, _S, _P, resultado(no_cumple_politicas, [sin_datos_suficientes])).
+
+% ---------------------------------------------------
+% Herramientas de traza para ver unificacion/backtracking
+% ---------------------------------------------------
+
+% Traza normal (interactiva): permite avanzar paso a paso.
+trace_evaluar(U, S, P, R) :-
+    trace,
+    evaluar_acceso(U, S, P, R),
+    notrace.
+
+% Traza sin pausa: imprime puertos Call/Exit/Redo/Fail sin detenerse.
+trace_evaluar_sin_pausa(U, S, P, R) :-
+    visible(+all),
+    leash(-all),
+    trace,
+    evaluar_acceso(U, S, P, R),
+    notrace.

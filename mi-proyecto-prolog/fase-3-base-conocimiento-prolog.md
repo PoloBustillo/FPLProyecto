@@ -75,3 +75,25 @@ Salida actual de ejemplo:
 - Consulta: `admin` sobre `s1:443`
 - Resultado: `resultado(no_cumple_politicas,[cuenta_bloqueada,puerto_bloqueado_en_firewall])`
 - Primera falla critica: `cuenta_bloqueada`
+
+## 6) Ver el trace (unificacion y backtracking)
+
+### Opcion A: interactiva (paso a paso)
+
+1. `swipl`
+2. `?- [ 'mi-proyecto-prolog/src/auditoria_ti.pl' ].`
+3. `?- trace_evaluar(admin, s1, 443, R).`
+
+En pantalla veras puertos del depurador:
+
+- `Call` (llamada de objetivo)
+- `Unify` (unificacion de terminos)
+- `Exit` (objetivo satisfecho)
+- `Redo` (backtracking para buscar alternativas)
+- `Fail` (falla de una rama)
+
+### Opcion B: trace sin pausa (salida continua)
+
+`swipl -q -g "consult('mi-proyecto-prolog/src/auditoria_ti.pl'), trace_evaluar_sin_pausa(admin,s1,443,R), writeln(R), halt."`
+
+Esta modalidad imprime la traza completa sin pedir confirmacion en cada paso.
