@@ -29,7 +29,7 @@
 - `n`: Existe fuga potencial de información.
 - `o`: El servicio crítico está disponible.
 
-## 2) Reglas de negocio (20)
+## 2) Reglas de negocio
 
 - **R1:** Si `r` y no `s`, entonces `t`.
 - **R2:** Si `p` y `q`, entonces `o`.
@@ -74,6 +74,81 @@
 - `R18`: `¬l → t`
 - `R19`: `m → n`
 - `R20`: `n → w`
+
+## 3.1) Tablas de verdad (reglas clave)
+
+Se incluyen tablas de verdad para 4 reglas representativas. En todos los casos, la columna final valida la formula original.
+
+### Tabla R1: `(r ∧ ¬s) → t`
+
+| r | s | t | ¬s | r ∧ ¬s | (r ∧ ¬s) → t |
+|---|---|---|----|--------|--------------|
+| F | F | F | V  | F      | V            |
+| F | F | V | V  | F      | V            |
+| F | V | F | F  | F      | V            |
+| F | V | V | F  | F      | V            |
+| V | F | F | V  | V      | F            |
+| V | F | V | V  | V      | V            |
+| V | V | F | F  | F      | V            |
+| V | V | V | F  | F      | V            |
+
+### Tabla R2: `(p ∧ q) → o`
+
+| p | q | o | p ∧ q | (p ∧ q) → o |
+|---|---|---|-------|-------------|
+| F | F | F | F     | V           |
+| F | F | V | F     | V           |
+| F | V | F | F     | V           |
+| F | V | V | F     | V           |
+| V | F | F | F     | V           |
+| V | F | V | F     | V           |
+| V | V | F | V     | F           |
+| V | V | V | V     | V           |
+
+### Tabla R3: `¬u → ¬v`
+
+| u | v | ¬u | ¬v | ¬u → ¬v |
+|---|---|----|----|---------|
+| F | F | V  | V  | V       |
+| F | V | V  | F  | F       |
+| V | F | F  | V  | V       |
+| V | V | F  | F  | V       |
+
+### Tabla R4: `(t ∨ ¬v) → w`
+
+| t | v | w | ¬v | t ∨ ¬v | (t ∨ ¬v) → w |
+|---|---|---|----|--------|--------------|
+| F | F | F | V  | V      | F            |
+| F | F | V | V  | V      | V            |
+| F | V | F | F  | F      | V            |
+| F | V | V | F  | F      | V            |
+| V | F | F | V  | V      | F            |
+| V | F | V | V  | V      | V            |
+| V | V | F | F  | V      | F            |
+| V | V | V | F  | V      | V            |
+
+## 3.2) Formulas en FNC (resumen directo)
+
+- `FNC(R1) = (¬r ∨ s ∨ t)`
+- `FNC(R2) = (¬p ∨ ¬q ∨ o)`
+- `FNC(R3) = (u ∨ ¬v)`
+- `FNC(R4) = (¬t ∨ w) ∧ (v ∨ w)`
+- `FNC(R5) = (x ∨ t)`
+- `FNC(R6) = (y ∨ t)`
+- `FNC(R7) = (¬z ∨ t)`
+- `FNC(R8) = (a ∨ ¬b ∨ t)`
+- `FNC(R9) = (¬b ∨ c)`
+- `FNC(R10) = (d ∨ t)`
+- `FNC(R11) = (¬d ∨ e)`
+- `FNC(R12) = (f ∨ g)`
+- `FNC(R13) = (¬g ∨ t)`
+- `FNC(R14) = (h ∨ t)`
+- `FNC(R15) = (¬i ∨ h ∨ t)`
+- `FNC(R16) = (j ∨ t)`
+- `FNC(R17) = (¬k ∨ w)`
+- `FNC(R18) = (l ∨ t)`
+- `FNC(R19) = (¬m ∨ n)`
+- `FNC(R20) = (¬n ∨ w)`
 
 ## 4) Conversión a FNC paso a paso
 
